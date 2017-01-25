@@ -1,8 +1,7 @@
 var gulp        = require('gulp'),
     concat      = require('gulp-concat'),
+    connect 		= require('gulp-connect'),
     plumber     = require('gulp-plumber'),
-    server      = require('tiny-lr')(),
-    refresh     = require('gulp-livereload'),
     notify      = require('gulp-notify'),
     nodemon     = require('gulp-nodemon'),
     jshint      = require('gulp-jshint'),
@@ -23,6 +22,39 @@ var paths = {
   	'./src/css/*.css'
   ]
 };
+
+
+
+// var gulp = require('gulp'),
+//   connect = require('gulp-connect');
+ 
+gulp.task('fire:connect', function() {
+  connect.server({
+    root: 'public',
+    livereload: true
+  });
+});
+ 
+gulp.task('fire:html', function () {
+  gulp.src('./src/*.html')
+    .pipe(connect.reload());
+});
+ 
+gulp.task('fire:watch', function () {
+  gulp.watch(['./src/html/*.html'], ['fire:html']);
+});
+ 
+gulp.task('fire', ['fire:connect', 'fire:watch']);
+
+
+
+
+
+
+
+
+
+
 
 gulp.task('serve', function(){
   nodemon({'script': './server.js'});
@@ -49,7 +81,6 @@ gulp.task('html:build', function(){
   return gulp.src(paths.html)
   	.pipe(plumber())
     .pipe(gulp.dest('./public/'))
-    .pipe(refresh(server))
     .pipe(notify({message: 'HTML pages built'}));
 });
 
