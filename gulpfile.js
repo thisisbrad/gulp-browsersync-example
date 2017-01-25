@@ -49,7 +49,8 @@ gulp.task('html:build', function(){
   return gulp.src(paths.html)
   	.pipe(plumber())
     .pipe(gulp.dest('./public/'))
-    .pipe(refresh(server));
+    .pipe(refresh(server))
+    .pipe(notify({message: 'HTML pages built'}));
 });
 
 gulp.task('css:build', function(){

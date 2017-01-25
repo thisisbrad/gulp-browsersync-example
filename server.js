@@ -1,11 +1,12 @@
 var express = require('express')
 var morgan = require('morgan')
+var livereload = require('connect-livereload')
 
 var app = express()
-// app.use(require('connect-livereload')({
-//     port: 35729,
-//     ignore: ['.js', '.svg']
-//   }));
+app.use(livereload({
+    port: 35729,
+    ignore: ['.js', '.svg']
+  }));
 // app.configure('development', function() {
 //   // live reload script
 //   var liveReloadPort = settings.liveReload.port || 35729;
