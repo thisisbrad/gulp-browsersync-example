@@ -2,10 +2,20 @@ var express = require('express')
 var morgan = require('morgan')
 
 var app = express()
-app.use(require('connect-livereload')({
-    port: 35729,
-    ignore: ['.js', '.svg']
-  }));
+// app.use(require('connect-livereload')({
+//     port: 35729,
+//     ignore: ['.js', '.svg']
+//   }));
+// app.configure('development', function() {
+//   // live reload script
+//   var liveReloadPort = settings.liveReload.port || 35729;
+//   var excludeList = ['.woff', '.flv'];
+  
+//   app.use(require('connect-livereload')({
+//     port: liveReloadPort,
+//     excludeList: excludeList
+//   }));
+// });
 app.use(express.static('public'))
 app.use(morgan('dev'))
 

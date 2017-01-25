@@ -54,8 +54,7 @@ gulp.task('html:build', function(){
 
 gulp.task('css:build', function(){
   return gulp.src(paths.styles)
-    .pipe(plumber())
-    .pipe(gulp.dest('./src/css'))
+    .pipe(gulp.dest('./public/css'))
     .pipe(refresh(server))
     .pipe(notify({message: 'CSS done'}));
 });
@@ -64,7 +63,7 @@ gulp.task('build', ['html:build', 'js:build', 'css:build']);
 
 gulp.task('lr', function(){
   server.listen(lrPort, function(err){
-    if(err) {return console.error(err);}
+    if(err) {return console.error('###BOOM###', err);}
   });
 });
 
