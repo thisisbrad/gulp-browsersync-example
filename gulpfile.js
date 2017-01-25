@@ -11,7 +11,7 @@ var gulp        = require('gulp'),
 var paths = {
   assets: ['./client/assets/'],
   scripts: [
-    '.src/js/main.js',
+    './src/js/main.js',
     './src/**/*.js'
   ],
   html: [
@@ -21,11 +21,7 @@ var paths = {
   styles: [
   	'./src/css/styles.css',
   	'./src/css/*.css'
-  ],
-  server: {
-    js: ['./server/**/*.js'],
-    specs: ['./server/cards/specs/*.js']
-  }
+  ]
 };
 
 gulp.task('serve', function(){
