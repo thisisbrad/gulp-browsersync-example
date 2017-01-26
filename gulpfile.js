@@ -38,7 +38,7 @@ gulp.task('js:lint', function(){
   return gulp.src(paths.scripts)
     .pipe(plumber())
     .pipe(jshint())
-    .pipe(jshint.reporter('default'))
+    .pipe(jshint.reporter('jshint-stylish'))
     .pipe(notify({message: 'jshint done'}));
 });
 
@@ -57,7 +57,7 @@ gulp.task('html:build', function(){
   	.pipe(plumber())
     .pipe(gulp.dest('./public/'))
     .pipe(connect.reload())
-    .pipe(notify({message: 'HTML pages built'}));
+    .pipe(notify({message: 'HTML pages built'}))
 
 });
 
@@ -71,12 +71,9 @@ gulp.task('css:build', function(){
 gulp.task('build', ['html:build', 'js:build', 'css:build']);
 
 gulp.task('watch', function(){
-  refresh.listen();
   gulp.watch(paths.html, ['html:build']);
   gulp.watch(paths.scripts, ['js:lint', 'js:build']);
   gulp.watch(paths.styles, ['css:build']);
 });
 
-
 gulp.task('default', ['build', 'connect', 'serve', 'watch']);
-

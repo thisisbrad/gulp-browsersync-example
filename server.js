@@ -1,14 +1,13 @@
-var express = require('express')
-var morgan = require('morgan')
+var express    = require('express')
+var morgan     = require('morgan')
 var livereload = require('connect-livereload')
 
 var app = express()
 
 app.use(livereload({
-    port: 35729,
-    ignore: ['.js', '.svg']
-	}));
-
+  port: 35729,
+  ignore: ['.js', '.svg']
+}))
 
 app.use(express.static('public'))
 app.use(morgan('dev'))

@@ -7,3 +7,8 @@ html {
   -o-background-size: cover;
   background-size: cover;
 }
+
+h1 {
+	padding: 50px;
+	color: teal;
+}
