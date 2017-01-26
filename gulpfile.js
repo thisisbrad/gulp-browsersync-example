@@ -23,41 +23,15 @@ var paths = {
   ]
 };
 
+gulp.task('serve', function(){
+  nodemon({'script': './server.js'});
+});
 
-
-// var gulp = require('gulp'),
-//   connect = require('gulp-connect');
- 
-gulp.task('fire:connect', function() {
+gulp.task('connect', function() {
   connect.server({
     root: 'public',
     livereload: true
   });
-});
- 
-gulp.task('fire:html', function () {
-  gulp.src('./src/*.html')
-    .pipe(connect.reload());
-});
- 
-gulp.task('fire:watch', function () {
-  gulp.watch(['./src/html/*.html'], ['fire:html']);
-});
- 
-gulp.task('fire', ['fire:connect', 'fire:watch']);
-
-
-
-
-
-
-
-
-
-
-
-gulp.task('serve', function(){
-  nodemon({'script': './server.js'});
 });
 
 gulp.task('js:lint', function(){
@@ -73,7 +47,7 @@ gulp.task('js:build', function(){
     .pipe(plumber())
     .pipe(concat('main.js'))
     .pipe(gulp.dest('./public/js'))
-    .pipe(refresh(server))
+    .pipe(connect.reload())
     .pipe(notify({message: 'JS concated'}));
 });
 
@@ -81,23 +55,17 @@ gulp.task('html:build', function(){
   return gulp.src(paths.html)
   	.pipe(plumber())
     .pipe(gulp.dest('./public/'))
-    .pipe(notify({message: 'HTML pages built'}));
+    .pipe(connect.reload());
 });
 
 gulp.task('css:build', function(){
   return gulp.src(paths.styles)
     .pipe(gulp.dest('./public/css'))
-    .pipe(refresh(server))
+    .pipe(connect.reload())
     .pipe(notify({message: 'CSS done'}));
 });
 
 gulp.task('build', ['html:build', 'js:build', 'css:build']);
-
-gulp.task('lr', function(){
-  server.listen(lrPort, function(err){
-    if(err) {return console.error('###BOOM###', err);}
-  });
-});
 
 gulp.task('watch', function(){
   gulp.watch(paths.html, ['html:build']);
@@ -105,4 +73,4 @@ gulp.task('watch', function(){
   gulp.watch(paths.styles, ['css:build']);
 });
 
-gulp.task('default', ['build', 'lr', 'serve', 'watch']);
+gulp.task('default', ['build', 'connect', 'serve', 'watch']);
