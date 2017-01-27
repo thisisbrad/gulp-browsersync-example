@@ -17,5 +17,5 @@ app.get('*', function(req, res, next){
 })
 
 var server = app.listen(process.env.PORT || 3000, function() {
-	console.log('### Server is listening on PORT: ' + server.address().port)
+	console.log(`### Server is listening on PORT: ${server.address().port} ###`)
 })
