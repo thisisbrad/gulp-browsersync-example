@@ -47,7 +47,6 @@ gulp.task('js:build', function(){
     .pipe(plumber())
     .pipe(concat('main.js'))
     .pipe(gulp.dest('./public/js'))
-
     .pipe(connect.reload())
     .pipe(notify({message: 'JS concated'}));
 });
