@@ -1,7 +1,7 @@
 var gulp        = require('gulp'),
     concat      = require('gulp-concat'),
     notify      = require('gulp-notify'),
-    browserSync = require('browser-sync')
+    browserSync = require('browser-sync'),
     jshint      = require('gulp-jshint');
 
 var paths = {
@@ -66,7 +66,6 @@ gulp.task('css:build', function(){
 });
 
 gulp.task('css:watch', ['css:build'], function (done) {
-    console.log('twerk CSS')
     browserSync.reload();
     done();
 });
@@ -74,7 +73,7 @@ gulp.task('css:watch', ['css:build'], function (done) {
 gulp.task('build', ['html:build', 'js:build', 'css:build']);
 
 gulp.task('watch', function(){
-  gulp.watch(paths.html, ['html:build']);
+  gulp.watch(paths.html, ['html:watch']);
   gulp.watch(paths.scripts, ['js:lint', 'js:watch']);
   gulp.watch(paths.styles, ['css:watch']);
 });
