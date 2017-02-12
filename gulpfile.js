@@ -8,7 +8,7 @@ var gulp        = require('gulp'),
     lrPort      = 35729;
 
 var paths = {
-  assets: ['./client/assets/'],
+  assets: ['./src/assets/'],
   scripts: [
     './src/js/main.js',
     './src/**/*.js'
@@ -62,6 +62,8 @@ gulp.task('html:build', function(){
 
 gulp.task('css:build', function(){
   return gulp.src(paths.styles)
+    .pipe(plumber())
+    .pipe(concat('styles.css'))
     .pipe(gulp.dest('./public/css'))
     .pipe(connect.reload())
     .pipe(notify({message: 'CSS done'}));
