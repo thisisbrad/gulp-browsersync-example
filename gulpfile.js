@@ -1,10 +1,10 @@
-var gulp        = require('gulp'),
-    concat      = require('gulp-concat'),
-    notify      = require('gulp-notify'),
-    browserSync = require('browser-sync'),
-    jshint      = require('gulp-jshint');
+const gulp        = require('gulp');
+const concat      = require('gulp-concat');
+const notify      = require('gulp-notify');
+const browserSync = require('browser-sync');
+const jshint      = require('gulp-jshint');
 
-var paths = {
+const paths = {
   assets: ['./src/assets/'],
   scripts: [
     './src/js/main.js',
