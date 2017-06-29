@@ -4,6 +4,7 @@ const notify      = require('gulp-notify');
 const browserSync = require('browser-sync');
 const jshint      = require('gulp-jshint');
 
+
 const paths = {
   assets: ['./src/assets/'],
   scripts: [
@@ -21,6 +22,11 @@ const paths = {
 };
 
 gulp.task('serve', function () {
+
+    {
+      let bob = "me"
+    }
+
     browserSync.init({
         server: {
             baseDir: "./public"
